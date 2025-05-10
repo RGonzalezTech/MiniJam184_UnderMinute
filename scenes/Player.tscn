@@ -5,7 +5,8 @@
 [ext_resource type="Script" uid="uid://cd1371ouqwvo1" path="res://scripts/player_camera.gd" id="2_v6fml"]
 [ext_resource type="Texture2D" uid="uid://da273a0lg0j6t" path="res://assets/images/crosshair.png" id="4_mdl7e"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5q5h1"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_mdl7e"]
+size = Vector3(1, 1, 2)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5q5h1"]
 
@@ -16,13 +17,17 @@ script = ExtResource("1_3li8b")
 turn_rig = NodePath("CamRig")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_5q5h1")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.00476074)
+shape = SubResource("BoxShape3D_mdl7e")
 
-[node name="MeshPivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+[node name="MeshPivot" type="RemoteTransform3D" parent="."]
+unique_name_in_owner = true
+remote_path = NodePath("../Collider")
+update_position = false
+update_scale = false
 
 [node name="BodyCapsule" type="MeshInstance3D" parent="MeshPivot"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_5q5h1")
 skeleton = NodePath("../..")
 
