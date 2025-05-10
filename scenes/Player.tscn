@@ -13,6 +13,7 @@
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_3li8b")
+turn_rig = NodePath("CamRig")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)

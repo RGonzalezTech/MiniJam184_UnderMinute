@@ -7,6 +7,15 @@ extends CharacterBody3D
 ## Movement Speed
 @export var speed : float = 5.0
 
+## The Node3D that represents the player's relative "Forward"
+@export var turn_rig : NodePath = ""
+var _cam_rig : Node3D
+
+func _ready() -> void:
+	_cam_rig = get_node_or_null(turn_rig)
+	
+	assert(_cam_rig)
+
 func _physics_process(delta: float) -> void:
 	_apply_gravity(delta)
 	# Set desired velocity
@@ -36,4 +45,4 @@ func _velocity_from_direction(direction: Vector3) -> void:
 ## relative to the player's "Forward" orientation
 func _get_desired_direction() -> Vector3:
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
-	return (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	return (_cam_rig.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
