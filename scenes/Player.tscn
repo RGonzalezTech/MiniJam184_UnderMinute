@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://c1dawkdnndtcl"]
+
+[ext_resource type="Script" uid="uid://dl4n1suxr34ne" path="res://scripts/player.gd" id="1_3li8b"]
+[ext_resource type="Environment" uid="uid://c0rw7epvbmvnw" path="res://assets/BaseEnvironment.tres" id="1_p0vlq"]
+[ext_resource type="Script" uid="uid://cd1371ouqwvo1" path="res://scripts/player_camera.gd" id="2_v6fml"]
+[ext_resource type="Texture2D" uid="uid://da273a0lg0j6t" path="res://assets/images/crosshair.png" id="4_mdl7e"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5q5h1"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5q5h1"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_p0vlq"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_3li8b")
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_5q5h1")
+
+[node name="MeshPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+
+[node name="BodyCapsule" type="MeshInstance3D" parent="MeshPivot"]
+mesh = SubResource("CapsuleMesh_5q5h1")
+skeleton = NodePath("../..")
+
+[node name="Wing1" type="MeshInstance3D" parent="MeshPivot/BodyCapsule"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.240748, -0.863817, 0, 0)
+mesh = SubResource("BoxMesh_p0vlq")
+
+[node name="Wing2" type="MeshInstance3D" parent="MeshPivot/BodyCapsule"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.240748, 0.909697, 0, 0)
+mesh = SubResource("BoxMesh_p0vlq")
+
+[node name="CamRig" type="Node3D" parent="."]
+
+[node name="CamPitch" type="Node3D" parent="CamRig"]
+
+[node name="PlayerCam" type="Camera3D" parent="CamRig/CamPitch"]
+transform = Transform3D(1, 0, 0, 0, 0.869184, 0.494488, 0, -0.494488, 0.869184, 0, 2.8249, 2.70386)
+environment = ExtResource("1_p0vlq")
+current = true
+script = ExtResource("2_v6fml")
+cam_turn_rig = NodePath("../..")
+cam_pitch_rig = NodePath("..")
+
+[node name="PlayerHUD" type="CanvasLayer" parent="."]
+
+[node name="CrossHair" type="TextureRect" parent="PlayerHUD"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -39.5
+offset_right = 40.0
+offset_bottom = 39.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_mdl7e")
+expand_mode = 1
+stretch_mode = 5

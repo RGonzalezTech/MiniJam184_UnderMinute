@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bny14sl71cldq"]
+
+[ext_resource type="PackedScene" uid="uid://c1dawkdnndtcl" path="res://scenes/Player.tscn" id="1_ig7tw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ig7tw"]
+albedo_color = Color(1, 0, 0.0166664, 1)
+
+[node name="Main" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.84098, 3.02745)
+
+[node name="Sunlight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.819152, 0.573576, 0, -0.573576, -0.819152, 0, 2.34802, 0)
+
+[node name="Floor" type="CSGBox3D" parent="."]
+size = Vector3(20, 1, 20)
+material = SubResource("StandardMaterial3D_ig7tw")
