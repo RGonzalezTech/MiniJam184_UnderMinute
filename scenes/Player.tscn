@@ -1,6 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://c1dawkdnndtcl"]
+[gd_scene load_steps=16 format=3 uid="uid://c1dawkdnndtcl"]
 
 [ext_resource type="Script" uid="uid://dl4n1suxr34ne" path="res://scripts/player.gd" id="1_3li8b"]
+[ext_resource type="ArrayMesh" uid="uid://cvf2bkb6me4b4" path="res://assets/models/raven.obj" id="2_d3wef"]
+[ext_resource type="Material" uid="uid://cxpegv8awxmuo" path="res://assets/models/bird_material.tres" id="2_o4126"]
 [ext_resource type="Script" uid="uid://cd1371ouqwvo1" path="res://scripts/player_camera.gd" id="2_v6fml"]
 [ext_resource type="Texture2D" uid="uid://da273a0lg0j6t" path="res://assets/images/crosshair.png" id="4_mdl7e"]
 [ext_resource type="Script" uid="uid://eqwiftweiixe" path="res://scripts/wing_ui.gd" id="5_cw2d6"]
@@ -9,13 +11,10 @@
 [ext_resource type="Script" uid="uid://ctvcxuc4qyrsm" path="res://scripts/countdown_ui.gd" id="6_cw2d6"]
 [ext_resource type="Script" uid="uid://ba2o1ue6shlf8" path="res://scripts/score_ui.gd" id="7_bruh7"]
 [ext_resource type="Script" uid="uid://dq3humld7h6xr" path="res://scripts/player_score_manager.gd" id="8_khinc"]
+[ext_resource type="AudioStream" uid="uid://8wwufmhbt753" path="res://assets/sounds/Jump.mp3" id="10_6eyey"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mdl7e"]
 size = Vector3(1, 1, 2)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_5q5h1"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_p0vlq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_70d11"]
 font_size = 32
@@ -37,18 +36,10 @@ remote_path = NodePath("../Collider")
 update_position = false
 update_scale = false
 
-[node name="BodyCapsule" type="MeshInstance3D" parent="MeshPivot"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_5q5h1")
-skeleton = NodePath("../..")
-
-[node name="Wing1" type="MeshInstance3D" parent="MeshPivot/BodyCapsule"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.240748, -0.863817, 0, 0)
-mesh = SubResource("BoxMesh_p0vlq")
-
-[node name="Wing2" type="MeshInstance3D" parent="MeshPivot/BodyCapsule"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.240748, 0.909697, 0, 0)
-mesh = SubResource("BoxMesh_p0vlq")
+[node name="BirdMesh" type="MeshInstance3D" parent="MeshPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.822626, 0)
+mesh = ExtResource("2_d3wef")
+surface_material_override/0 = ExtResource("2_o4126")
 
 [node name="CamRig" type="Node3D" parent="."]
 
@@ -140,6 +131,16 @@ vertical_alignment = 1
 script = ExtResource("7_bruh7")
 score_manager_path = NodePath("../../PlayerScoreManager")
 
+[node name="Tutorial" type="Label" parent="PlayerHUD"]
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 274.0
+offset_bottom = 81.0
+text = "Press 'R' to restart
+WASD and Mouse to Move
+Space to Jump
+Get as many points as possible!"
+
 [node name="PlayerJumpManager" type="Node" parent="."]
 script = ExtResource("6_70d11")
 metadata/_custom_type_script = "uid://bc8hol0agnpax"
@@ -147,3 +148,7 @@ metadata/_custom_type_script = "uid://bc8hol0agnpax"
 [node name="PlayerScoreManager" type="Node" parent="."]
 script = ExtResource("8_khinc")
 metadata/_custom_type_script = "uid://dq3humld7h6xr"
+
+[node name="JumpAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_6eyey")
+volume_db = -10.0

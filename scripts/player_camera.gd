@@ -30,6 +30,9 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent):
 	# Handle mouse look
+	if event is InputEventMouseButton and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
 	if event is InputEventMouseMotion:
 		if _cam_turn_rig_node:
 			# Rotate CamRig around its Y-axis for horizontal (yaw) look
