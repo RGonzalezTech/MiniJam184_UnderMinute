@@ -8,7 +8,4 @@
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.1441, 26.6993, 36.4001)
 
-[node name="Sunlight" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.819152, 0.573576, 0, -0.573576, -0.819152, 0, 2.34802, 0)
-
 [node name="Level" parent="." instance=ExtResource("2_0xm2m")]

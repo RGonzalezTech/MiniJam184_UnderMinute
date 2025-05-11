@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://c1dawkdnndtcl"]
+[gd_scene load_steps=10 format=3 uid="uid://c1dawkdnndtcl"]
 
 [ext_resource type="Script" uid="uid://dl4n1suxr34ne" path="res://scripts/player.gd" id="1_3li8b"]
-[ext_resource type="Environment" uid="uid://c0rw7epvbmvnw" path="res://assets/BaseEnvironment.tres" id="1_p0vlq"]
 [ext_resource type="Script" uid="uid://cd1371ouqwvo1" path="res://scripts/player_camera.gd" id="2_v6fml"]
 [ext_resource type="Texture2D" uid="uid://da273a0lg0j6t" path="res://assets/images/crosshair.png" id="4_mdl7e"]
 [ext_resource type="Script" uid="uid://eqwiftweiixe" path="res://scripts/wing_ui.gd" id="5_cw2d6"]
@@ -48,7 +47,6 @@ mesh = SubResource("BoxMesh_p0vlq")
 
 [node name="PlayerCam" type="Camera3D" parent="CamRig/CamPitch"]
 transform = Transform3D(1, 0, 0, 0, 0.869184, 0.494488, 0, -0.494488, 0.869184, 0, 2.8249, 2.70386)
-environment = ExtResource("1_p0vlq")
 current = true
 script = ExtResource("2_v6fml")
 cam_turn_rig = NodePath("../..")

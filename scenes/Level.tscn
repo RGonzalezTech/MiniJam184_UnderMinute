@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://b5sfvhmp8w8yg"]
+[gd_scene load_steps=9 format=3 uid="uid://b5sfvhmp8w8yg"]
 
 [ext_resource type="PackedScene" uid="uid://dbg6dl2u3tdan" path="res://assets/models/floating_islands/scene.gltf" id="1_uhqny"]
+[ext_resource type="Environment" uid="uid://c0rw7epvbmvnw" path="res://assets/BaseEnvironment.tres" id="2_k5jlv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k5jlv"]
 size = Vector3(24.1228, 15.6256, 17.8266)
@@ -22,40 +23,46 @@ size = Vector3(2.81395, 3.63241, 3.25394)
 
 [node name="Level" type="Node3D"]
 
-[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_uhqny")]
+[node name="ImportedMap" parent="." instance=ExtResource("1_uhqny")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="Colliders" type="StaticBody3D" parent="."]
 
-[node name="MainIsland" type="CollisionPolygon3D" parent="StaticBody3D"]
+[node name="MainIsland" type="CollisionPolygon3D" parent="Colliders"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 4.999, -1.278, -6.821)
 depth = 12.0
 polygon = PackedVector2Array(-10.9048, -16.5155, -1.40269, -15.3391, 8.00889, -8.18988, 13.1672, 1.76467, 16.3345, 12.6242, 16.425, 19.3209, 10.5428, 23.7552, -6.01798, 26.7415, -13.6196, 26.2891, -20.4973, 22.5787, -22.2167, 14.7056, -21.3118, 4.11756, -17.6015, -6.83244, -16.1535, -12.6242)
 
-[node name="SmallIsland1" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="SmallIsland1" type="CollisionShape3D" parent="Colliders"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.321, 13.1444, 37.8889)
 shape = SubResource("BoxShape3D_k5jlv")
 
-[node name="SmallIsland2" type="CollisionPolygon3D" parent="StaticBody3D"]
+[node name="SmallIsland2" type="CollisionPolygon3D" parent="Colliders"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 27.8142, -13.9679, -35.7427)
 depth = 12.0
 polygon = PackedVector2Array(-10.8143, -16.968, -7.64691, -19.6829, -4.29856, -19.3209, 2.39814, -13.6196, 7.6469, -4.84153, 10.6333, 2.12665, 11.9002, 11.4477, 10.2713, 15.882, 4.02707, 18.8684, 0.769215, 18.8684, -3.12211, 14.7056, -9.18534, 3.84608, -8.64236, -1.1312, -9.45683, -7.55641, -12.4432, -12.3527)
 
-[node name="SmallIsland3" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="SmallIsland3" type="CollisionShape3D" parent="Colliders"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.6427, -14.6416, -28.3858)
 shape = SubResource("BoxShape3D_kl8ac")
 
-[node name="SmallIsland4" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="SmallIsland4" type="CollisionShape3D" parent="Colliders"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.8902, -8.48568, -14.1985)
 shape = SubResource("BoxShape3D_qifjx")
 
-[node name="TinyRock1" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="TinyRock1" type="CollisionShape3D" parent="Colliders"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.9549, -3.13462, -27.9887)
 shape = SubResource("BoxShape3D_dke22")
 
-[node name="TinyRock2" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="TinyRock2" type="CollisionShape3D" parent="Colliders"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.0255, -1.13797, 12.9897)
 shape = SubResource("BoxShape3D_4qegb")
 
-[node name="TinyRock3" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="TinyRock3" type="CollisionShape3D" parent="Colliders"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.9109, -0.961459, 62.9568)
 shape = SubResource("BoxShape3D_faw0r")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_k5jlv")
+
+[node name="Sunlight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.634705, -0.0575384, -0.770609, 0.687036, 0.49851, 0.528649, 0.353739, -0.864973, 0.355938, 0, 0, 0)
