@@ -33,6 +33,7 @@ func start_game() -> void:
 	countdown_timer = Timer.new()
 	countdown_timer.wait_time = countdown
 	countdown_timer.autostart = true
+	countdown_timer.one_shot = true
 	countdown_timer.timeout.connect(_on_countdown_finished)
 	add_child(countdown_timer)
 
@@ -42,6 +43,7 @@ func _on_countdown_finished() -> void:
 	game_timer = Timer.new()
 	game_timer.wait_time = timeout
 	game_timer.autostart = true
+	game_timer.one_shot = true
 	game_timer.timeout.connect(_on_game_end)
 	add_child(game_timer)
 	
