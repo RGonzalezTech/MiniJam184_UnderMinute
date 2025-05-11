@@ -15,7 +15,6 @@ func _ready() -> void:
 	GameManager.game_start.connect(_on_game_start)
 	GameManager.game_end.connect(_on_game_end)
 	
-	await get_tree().create_timer(2.0).timeout
 	GameManager.start_game()
 
 func _process(delta: float) -> void:

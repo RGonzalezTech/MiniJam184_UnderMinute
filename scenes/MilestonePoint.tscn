@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://ngl0b6grl0o3"]
+
+[ext_resource type="Script" uid="uid://chpb82kyml0hl" path="res://scripts/milestone_point.gd" id="1_eu8mj"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_drpp2"]
+height = 0.5
+radius = 3.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eu8mj"]
+albedo_color = Color(1, 1, 0, 1)
+
+[node name="MilestonePoint" type="Node3D"]
+script = ExtResource("1_eu8mj")
+
+[node name="CollArea" type="Area3D" parent="."]
+
+[node name="CollShape" type="CollisionShape3D" parent="CollArea"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_drpp2")
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+inner_radius = 2.5
+outer_radius = 3.2
+sides = 16
+ring_sides = 8
+material = SubResource("StandardMaterial3D_eu8mj")

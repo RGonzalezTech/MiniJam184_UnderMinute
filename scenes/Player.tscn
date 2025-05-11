@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c1dawkdnndtcl"]
+[gd_scene load_steps=15 format=3 uid="uid://c1dawkdnndtcl"]
 
 [ext_resource type="Script" uid="uid://dl4n1suxr34ne" path="res://scripts/player.gd" id="1_3li8b"]
 [ext_resource type="Script" uid="uid://cd1371ouqwvo1" path="res://scripts/player_camera.gd" id="2_v6fml"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://d33nonk4d7hed" path="res://assets/images/wings.png" id="5_qu4a1"]
 [ext_resource type="Script" uid="uid://bc8hol0agnpax" path="res://scripts/player_jump_manager.gd" id="6_70d11"]
 [ext_resource type="Script" uid="uid://ctvcxuc4qyrsm" path="res://scripts/countdown_ui.gd" id="6_cw2d6"]
+[ext_resource type="Script" uid="uid://ba2o1ue6shlf8" path="res://scripts/score_ui.gd" id="7_bruh7"]
+[ext_resource type="Script" uid="uid://dq3humld7h6xr" path="res://scripts/player_score_manager.gd" id="8_khinc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mdl7e"]
 size = Vector3(1, 1, 2)
@@ -18,7 +20,10 @@ size = Vector3(1, 1, 2)
 [sub_resource type="LabelSettings" id="LabelSettings_70d11"]
 font_size = 32
 
-[node name="Player" type="CharacterBody3D"]
+[sub_resource type="LabelSettings" id="LabelSettings_cw2d6"]
+font_size = 24
+
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_3li8b")
 turn_rig = NodePath("CamRig")
 
@@ -121,6 +126,24 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("6_cw2d6")
 
+[node name="ScoreUI" type="Label" parent="PlayerHUD"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -266.0
+offset_bottom = 58.0
+grow_horizontal = 0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_cw2d6")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("7_bruh7")
+score_manager_path = NodePath("../../PlayerScoreManager")
+
 [node name="PlayerJumpManager" type="Node" parent="."]
 script = ExtResource("6_70d11")
 metadata/_custom_type_script = "uid://bc8hol0agnpax"
+
+[node name="PlayerScoreManager" type="Node" parent="."]
+script = ExtResource("8_khinc")
+metadata/_custom_type_script = "uid://dq3humld7h6xr"

@@ -17,6 +17,7 @@ const TURN_SPEED : float = 5.0
 
 ## THe node responsible for reporting whether we can jump
 @onready var jump_manager : PlayerJumpManager = $PlayerJumpManager
+@onready var score_manager : PlayerScoreManager = $PlayerScoreManager
 
 ## Movement Speed
 @export var speed : float = 15.0
