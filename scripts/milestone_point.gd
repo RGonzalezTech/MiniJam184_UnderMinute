@@ -17,7 +17,13 @@ func _ready() -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if not body.is_in_group("Player"):
 		return # ignore
-	
+
+	if not _can_consume():
+		return # ignore
+
 	(body as Player).score_manager.add() # add point
 	consumed.emit()
 	point_sound_player.play()
+
+func _can_consume() -> bool:
+	return visible
