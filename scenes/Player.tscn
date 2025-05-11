@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c1dawkdnndtcl"]
+[gd_scene load_steps=12 format=3 uid="uid://c1dawkdnndtcl"]
 
 [ext_resource type="Script" uid="uid://dl4n1suxr34ne" path="res://scripts/player.gd" id="1_3li8b"]
 [ext_resource type="Script" uid="uid://cd1371ouqwvo1" path="res://scripts/player_camera.gd" id="2_v6fml"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://eqwiftweiixe" path="res://scripts/wing_ui.gd" id="5_cw2d6"]
 [ext_resource type="Texture2D" uid="uid://d33nonk4d7hed" path="res://assets/images/wings.png" id="5_qu4a1"]
 [ext_resource type="Script" uid="uid://bc8hol0agnpax" path="res://scripts/player_jump_manager.gd" id="6_70d11"]
+[ext_resource type="Script" uid="uid://ctvcxuc4qyrsm" path="res://scripts/countdown_ui.gd" id="6_cw2d6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mdl7e"]
 size = Vector3(1, 1, 2)
@@ -13,6 +14,9 @@ size = Vector3(1, 1, 2)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5q5h1"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_p0vlq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_70d11"]
+font_size = 32
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_3li8b")
@@ -102,6 +106,20 @@ layout_mode = 2
 texture = ExtResource("5_qu4a1")
 expand_mode = 3
 stretch_mode = 4
+
+[node name="CountdownLabel" type="Label" parent="PlayerHUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -92.5
+offset_right = 92.5
+offset_bottom = 81.0
+grow_horizontal = 2
+text = "60"
+label_settings = SubResource("LabelSettings_70d11")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("6_cw2d6")
 
 [node name="PlayerJumpManager" type="Node" parent="."]
 script = ExtResource("6_70d11")

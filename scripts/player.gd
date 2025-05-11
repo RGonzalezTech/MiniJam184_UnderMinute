@@ -21,6 +21,9 @@ const TURN_SPEED : float = 5.0
 ## Movement Speed
 @export var speed : float = 15.0
 
+## Enabled when the game starts. Allows movement
+@export var can_move : bool = false
+
 ## The Node3D that represents the player's relative "Forward" for input
 @export var turn_rig : NodePath = ""
 var _cam_rig : Node3D
@@ -29,8 +32,21 @@ func _ready() -> void:
 	_cam_rig = get_node_or_null(turn_rig)
 	# Ensure that the turn_rig node is correctly assigned and found.
 	assert(_cam_rig, "Turn rig node not found. Please assign a Node3D to the 'turn_rig' export variable in the inspector.")
+	
+	GameManager.game_start.connect(_on_game_start)
+	GameManager.game_end.connect(_on_game_end)
+
+func _on_game_start() -> void:
+	can_move = true
+
+func _on_game_end() -> void:
+	can_move = false
 
 func _physics_process(delta: float) -> void:
+	# Guard clause: prevent moving when unallowed
+	if not can_move:
+		return
+	
 	_apply_gravity(delta)
 	
 	# Get the desired movement direction based on input and camera orientation (world space, normalized).
