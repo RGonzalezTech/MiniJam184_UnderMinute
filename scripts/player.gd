@@ -10,7 +10,13 @@ const MOTION_SMOOTHING_SPEED : float = 5
 const TURN_SPEED : float = 2.0
 
 ## Default force of Gravity
-@export var GRAVITY : Vector3 = Vector3(0, -10, 0)
+@export var GRAVITY : Vector3 = Vector3(0, -20, 0)
+
+## Jump force when jumping
+@export var JUMP_FORCE : float = 10.0
+
+## THe node responsible for reporting whether we can jump
+@onready var jump_manager : PlayerJumpManager = $PlayerJumpManager
 
 ## Movement Speed
 @export var speed : float = 5.0
@@ -37,6 +43,11 @@ func _physics_process(delta: float) -> void:
 	
 	# Apply movement and handle collisions using CharacterBody3D's built-in function.
 	move_and_slide()
+
+func _input(event: InputEvent) -> void:
+	if(event.is_action_released("jump") && jump_manager.jump()):
+		# Do Jumping
+		velocity.y = JUMP_FORCE
 
 ## If suspended in air, then apply a downward force (gravity).
 func _apply_gravity(delta: float) -> void:
