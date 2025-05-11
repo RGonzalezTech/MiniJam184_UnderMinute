@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c1dawkdnndtcl"]
+[gd_scene load_steps=16 format=3 uid="uid://c1dawkdnndtcl"]
 
 [ext_resource type="Script" uid="uid://dl4n1suxr34ne" path="res://scripts/player.gd" id="1_3li8b"]
 [ext_resource type="Script" uid="uid://cd1371ouqwvo1" path="res://scripts/player_camera.gd" id="2_v6fml"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://ctvcxuc4qyrsm" path="res://scripts/countdown_ui.gd" id="6_cw2d6"]
 [ext_resource type="Script" uid="uid://ba2o1ue6shlf8" path="res://scripts/score_ui.gd" id="7_bruh7"]
 [ext_resource type="Script" uid="uid://dq3humld7h6xr" path="res://scripts/player_score_manager.gd" id="8_khinc"]
+[ext_resource type="AudioStream" uid="uid://8wwufmhbt753" path="res://assets/sounds/Jump.mp3" id="10_6eyey"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mdl7e"]
 size = Vector3(1, 1, 2)
@@ -147,3 +148,7 @@ metadata/_custom_type_script = "uid://bc8hol0agnpax"
 [node name="PlayerScoreManager" type="Node" parent="."]
 script = ExtResource("8_khinc")
 metadata/_custom_type_script = "uid://dq3humld7h6xr"
+
+[node name="JumpAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_6eyey")
+volume_db = -10.0

@@ -15,11 +15,27 @@ const MAX_JUMPS = 3
 ## Private: time passed
 var _elapsed : float = 0.0
 
+## Private: Whether the system is allowing jumps
+var jumps_allowed := false
+
+func _ready() -> void:
+	GameManager.game_start.connect(_on_game_start)
+	GameManager.game_end.connect(_on_game_end)
+
+func _on_game_start() -> void:
+	jumps_allowed = true
+
+func _on_game_end() -> void:
+	jumps_allowed = false
+
 func _process(delta: float) -> void:
 	_handle_reloading(delta)
 
 ## Tries to jump and returns a boolean for whether it jumped
 func jump() -> bool:
+	if not jumps_allowed:
+		return false
+
 	if available_jumps > 0:
 		available_jumps -= 1
 		_emit_jumps()
