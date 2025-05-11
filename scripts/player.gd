@@ -67,6 +67,8 @@ func _input(event: InputEvent) -> void:
 		# Do Jumping
 		velocity.y = JUMP_FORCE
 		jump_audio_player.play()
+	elif(event.is_action_released("reload")):
+		get_tree().reload_current_scene()
 
 ## If suspended in air, then apply a downward force (gravity).
 func _apply_gravity(delta: float) -> void:
