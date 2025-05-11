@@ -13,7 +13,7 @@ const TURN_SPEED : float = 5.0
 @export var GRAVITY : Vector3 = Vector3(0, -20, 0)
 
 ## Jump force when jumping
-@export var JUMP_FORCE : float = 10.0
+@export var JUMP_FORCE : float = 20.0
 
 ## THe node responsible for reporting whether we can jump
 @onready var jump_manager : PlayerJumpManager = $PlayerJumpManager
