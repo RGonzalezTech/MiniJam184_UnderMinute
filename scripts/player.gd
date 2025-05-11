@@ -4,10 +4,10 @@ extends CharacterBody3D
 ## The player controller for flight
 
 ## How quickly velocity changes (acceleration/deceleration)
-const MOTION_SMOOTHING_SPEED : float = 5
+const MOTION_SMOOTHING_SPEED : float = 3.5
 
 ## How quickly the player can turn it's mesh
-const TURN_SPEED : float = 2.0
+const TURN_SPEED : float = 5.0
 
 ## Default force of Gravity
 @export var GRAVITY : Vector3 = Vector3(0, -20, 0)
@@ -19,7 +19,7 @@ const TURN_SPEED : float = 2.0
 @onready var jump_manager : PlayerJumpManager = $PlayerJumpManager
 
 ## Movement Speed
-@export var speed : float = 5.0
+@export var speed : float = 15.0
 
 ## The Node3D that represents the player's relative "Forward" for input
 @export var turn_rig : NodePath = ""
