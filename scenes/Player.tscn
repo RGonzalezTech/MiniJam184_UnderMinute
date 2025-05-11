@@ -141,6 +141,16 @@ vertical_alignment = 1
 script = ExtResource("7_bruh7")
 score_manager_path = NodePath("../../PlayerScoreManager")
 
+[node name="Tutorial" type="Label" parent="PlayerHUD"]
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 274.0
+offset_bottom = 81.0
+text = "Press 'R' to restart
+WASD and Mouse to Move
+Space to Jump
+Get as many points as possible!"
+
 [node name="PlayerJumpManager" type="Node" parent="."]
 script = ExtResource("6_70d11")
 metadata/_custom_type_script = "uid://bc8hol0agnpax"
