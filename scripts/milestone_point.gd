@@ -7,6 +7,7 @@ signal consumed
 @export var points : int = 1
 
 @onready var collision_area : Area3D = $CollArea
+@onready var point_sound_player : AudioStreamPlayer = $PointSoundPlayer
 
 func _ready() -> void:
 	assert(collision_area, "MilestonePoint: Must have collision area")
@@ -19,3 +20,4 @@ func _on_body_entered(body: Node3D) -> void:
 	
 	(body as Player).score_manager.add() # add point
 	consumed.emit()
+	point_sound_player.play()
